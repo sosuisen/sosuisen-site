@@ -1,89 +1,184 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import Footer from '../components/footer'
 
-import Bio from "../components/bio"
-import Layout from "../components/layout"
-import Seo from "../components/seo"
+// styles
+const pageStyles = {
+  color: "#232129",
+  padding: 96,
+  fontFamily: "-apple-system, Roboto, sans-serif, serif",
+}
+const headingStyles = {
+  marginTop: 0,
+  marginBottom: 64,
+  maxWidth: 320,
+}
+const headingAccentStyles = {
+  color: "#c0c0c0",
+}
+const paragraphStyles = {
+  marginBottom: 48,
+}
+const codeStyles = {
+  color: "#8A6534",
+  padding: 4,
+  backgroundColor: "#FFF4DB",
+  fontSize: "1.25rem",
+  borderRadius: 4,
+}
+const listStyles = {
+  marginBottom: 96,
+}
 
-const BlogIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+const listItemStyles = {
+  fontWeight: 300,
+  fontSize: 24,
+  maxWidth: 560,
+  marginBottom: 30,
+}
 
-  if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <Seo title="All posts" />
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  }
+const linkStyle = {
+  color: "#8954A8",
+  fontWeight: "bold",
+  fontSize: 16,
+  verticalAlign: "5%",
+}
 
+const aboutLinkStyle = {
+  fontWeight: 300,
+  fontSize: 24,
+  color: "#c0c0c0",
+  marginBottom: 24,
+}
+
+const descriptionStyle = {
+  color: "#232129",
+  fontSize: 14,
+  marginTop: 10,
+  marginBottom: 0,
+  lineHeight: 1.25,
+}
+
+const aboutLink = {
+  text: "About",
+  url: "./about",
+  color: "#8954A8",
+}
+
+const badgeStyle = {
+  color: "#fff",
+  backgroundColor: "#088413",
+  border: "1px solid #088413",
+  fontSize: 11,
+  fontWeight: "bold",
+  letterSpacing: 1,
+  borderRadius: 4,
+  padding: "4px 6px",
+  display: "inline-block",
+  position: "relative",
+  top: -2,
+  marginLeft: 10,
+  lineHeight: 1,
+}
+
+// data
+const links = [
+  {
+    text: "Blog",
+    url: "./blog",
+    description:
+      "",
+    color: "#E95800",
+    // badge: true
+  },
+]
+
+const projects = [
+  {
+    text: "GitDocumentDB",
+    url: "https://gitddb.com",
+    description:
+      "Offline-first database that syncs with Git",
+    color: "#E95800",
+    // badge: true
+  },
+  {
+    text: "TreeStickies",
+    url: "https://www.youtube.com/watch?v=PNBOYzWdfaE",
+    description:
+      "The sticky outliner",
+    color: "#E95800",
+    // badge: true
+  },
+  
+]
+
+// markup
+const IndexPage = () => {
   return (
-    <Layout location={location} title={siteTitle}>
-      <Seo title="All posts" />
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
-
-          return (
-            <li key={post.fields.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
+    <main style={pageStyles}>
+      <title>疏水線</title>
+      <h1 style={headingStyles}>
+        疏水線
+        <br />
+        <span style={headingAccentStyles}>sosuisen</span>
+      </h1>
+      <ul style={listStyles}>
+        <li style={aboutLinkStyle}>
+          <a
+            style={linkStyle}
+            href={`${aboutLink.url}`}
+          >
+            {aboutLink.text}
+          </a>
+        </li>
+        {links.map(link => (
+          <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
+            <span>
+              <a
+                style={linkStyle}
+                href={`${link.url}`}
               >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
-            </li>
-          )
-        })}
-      </ol>
-    </Layout>
+                {link.text}
+              </a>
+              {link.badge && (
+                <span style={badgeStyle} aria-label="New Badge">
+                  NEW!
+                </span>
+              )}
+              <p style={descriptionStyle}>{link.description}</p>
+            </span>
+          </li>
+        ))}
+        <li style={{ ...listItemStyles, color: "#58C000" }}>
+          <span style={{ ...linkStyle, color: "black" }}>
+            My projects
+          </span>
+          <ul>
+            {projects.map(link => (
+              <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
+                <span>
+                  <a
+                    style={linkStyle}
+                    href={`${link.url}`}
+                  >
+                    {link.text}
+                  </a>
+                  {link.badge && (
+                    <span style={badgeStyle} aria-label="New Badge">
+                      NEW!
+                    </span>
+                  )}
+                  <p style={descriptionStyle}>{link.description}</p>
+                </span>
+              </li>
+            ))}
+
+          </ul>
+        </li>
+      </ul>
+      <Footer />
+    </main>
   )
 }
 
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
-      nodes {
-        excerpt
-        fields {
-          slug
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-        }
-      }
-    }
-  }
-`
+export default IndexPage
