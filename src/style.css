@@ -32,7 +32,7 @@
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
     Times, serif;
-  --font-body: var(--fontFamily-serif);
+  --font-body: var(--fontFamily-sans);
   --font-heading: var(--fontFamily-sans);
   --fontWeight-normal: 400;
   --fontWeight-medium: 500;
@@ -170,10 +170,18 @@ p {
 
 ul,
 ol {
-  margin-left: var(--spacing-0);
-  margin-right: var(--spacing-0);
-  padding: var(--spacing-5);
+  margin-top: var(--spacing-0);
   margin-bottom: var(--spacing-8);
+  margin-left: var(--spacing-5);
+  margin-right: var(--spacing-0);
+
+  padding: var(--spacing-5);
+  padding-top: var(--spacing-1);
+  padding-bottom: var(--spacing-0);
+
+  padding-inline-start: var(--spacing-0);
+  padding-inline-end: var(--spacing-0);
+
   list-style-position: outside;
   list-style-image: none;
 }
@@ -181,7 +189,10 @@ ol {
 ul li,
 ol li {
   padding-left: var(--spacing-0);
-  margin-bottom: calc(var(--spacing-8) / 2);
+
+  margin-top: var(--spacing-0);
+  margin-bottom: var(--spacing-1);
+
 }
 
 li > p {
@@ -194,7 +205,7 @@ li *:last-child {
 
 li > ul {
   margin-left: var(--spacing-8);
-  margin-top: calc(var(--spacing-8) / 2);
+  /* margin-top: calc(var(--spacing-8) / 2); */
 }
 
 blockquote {
@@ -325,19 +336,6 @@ a:focus {
   line-height: var(--lineHeight-normal);
 }
 
-.table-of-contents ul {
-  margin-top: var(--spacing-0);
-  margin-bottom: var(--spacing-0);
-  padding-top: var(--spacing-0);
-  padding-bottom: var(--spacing-0);
-  padding-inline-start: var(--spacing-0);
-  padding-inline-end: var(--spacing-0);
-}
-
-.table-of-contents li {
-  margin-top: var(--spacing-0);
-  margin-bottom: var(--spacing-1);
-}
 
 /* Media queries */
 
