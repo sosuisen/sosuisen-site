@@ -1,12 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "sosuisen.net",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "sosuisen.net site",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
+  "author": "Hidekazu Kubota",
   "dependencies": {
     "gatsby": "^4.7.2",
     "gatsby-plugin-feed": "^4.7.0",
@@ -16,10 +13,11 @@
     "gatsby-plugin-manifest": "^4.7.0",
     "gatsby-plugin-offline": "^5.7.0",
     "gatsby-plugin-react-helmet": "^5.7.0",
-    "gatsby-plugin-sharp": "^4.7.0",
+    "gatsby-plugin-sharp": "^4.8.1",
     "gatsby-remark-autolink-headers": "^5.7.0",
     "gatsby-remark-copy-linked-files": "^5.7.0",
-    "gatsby-remark-images": "^6.7.0",
+    "gatsby-remark-image-attributes": "^1.1.0",
+    "gatsby-remark-images": "^6.8.1",
     "gatsby-remark-prismjs": "^6.7.0",
     "gatsby-remark-responsive-iframe": "^5.7.0",
     "gatsby-remark-smartypants": "^5.7.0",
@@ -41,7 +39,6 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "0BSD",
   "main": "n/a",
   "repository": {
     "type": "git",
@@ -49,11 +46,11 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "cp content/images/* public/static/ && gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "gatsby develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "clean": "gatsby clean && rm public",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }

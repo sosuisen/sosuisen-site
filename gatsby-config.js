@@ -27,16 +27,21 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 630,
-            },
+            resolve: `gatsby-remark-images`,           
           },
+          {
+            resolve: "gatsby-remark-image-attributes",
+            options: {
+              // dataAttributes: false
+            }
+          },          
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
@@ -61,8 +66,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {
