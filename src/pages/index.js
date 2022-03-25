@@ -109,6 +109,15 @@ const projects = [
     color: "#E95800",
     // badge: true
   },
+  {
+    text: "Logseq (ja)",
+    url: "https://scrapbox.io/logseq-ja/",
+    description:
+      "Logseq 日本語ドキュメントプロジェクト（非公式）",
+    color: "#E95800",
+    // badge: true
+  },
+  
   
 ]
 
